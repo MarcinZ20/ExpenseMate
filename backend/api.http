@@ -1,0 +1,10 @@
+### Check JWT Authentication
+POST http://localhost:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "marcin",
+  "password": "H4gPRPqRBXtin2BB"
+}
+
+###
