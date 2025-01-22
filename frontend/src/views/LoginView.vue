@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 import { ref } from 'vue';
-import SideNavigation from '@/components/SideNavigation.vue'
 
 const emailAddress = ref('')
 const password = ref('')
