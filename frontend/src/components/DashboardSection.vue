@@ -4,6 +4,7 @@ import ExpenseWidget from '@/components/ExpenseWidget.vue'
 import ProfitWidget from '@/components/ProfitWidget.vue'
 import GeneralBudgetWidget from '@/components/GeneralBudgetWidget.vue'
 import InvestmentsWidget from '@/components/InvestmentsWidget.vue'
+import TransactionsWidget from '@/components/TransactionsWidget.vue'
 </script>
 
 <template>
@@ -17,9 +18,7 @@ import InvestmentsWidget from '@/components/InvestmentsWidget.vue'
       <general-budget-widget/>
       <investments-widget/>
     </div>
-    <div
-      class="border-2 rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64 mb-4"
-    ></div>
+    <transactions-widget/>
   </main>
 </template>
 
