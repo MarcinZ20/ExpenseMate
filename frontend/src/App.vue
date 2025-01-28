@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import LoginView from '@/views/LoginView.vue'
-import HomeView from '@/views/HomeView.vue'
 
 </script>
 
 <template>
-  <HomeView/>
+  <router-view/>
 </template>
 
 <style scoped>
