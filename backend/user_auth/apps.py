@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CurrenciesConfig(AppConfig):
+class UserAuthConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'currencies'
+    name = 'user_auth'
