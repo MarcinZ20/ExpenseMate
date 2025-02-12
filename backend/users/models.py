@@ -1,8 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, UserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
-class CustomUserManager(UserManager):
+class CustomUserManager(BaseUserManager):
 
     def create_user(self, email: str, password: str, **other_fields):
         '''Function for custom user creation.'''
@@ -33,25 +33,19 @@ class CustomUserManager(UserManager):
         return self.create_user(email, password, **other_fields)
         
 
-class CustomUser(AbstractUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin):
     '''A class to override default user model'''
     
     email = models.EmailField(unique=True)
 
+    # Permissions & state
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
-    last_login = models.DateTimeField(blank=True, null=True)
-
+    # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    ### -- Fields to ommit -- ###
-    username = None
-    first_name = None
-    last_name = None
-    date_joined = None
 
     objects = CustomUserManager()
 
@@ -61,10 +55,14 @@ class CustomUser(AbstractUser, PermissionsMixin):
     def __str__(self) -> str:
         return f'{self.email.split('@')[0]}'
     
+    class Meta:
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
+    
 
-class CustomUserAddress(models.Model):
+class UserAddress(models.Model):
     '''A class to model user address.'''
-
+    
     first_line = models.CharField(max_length=200)
     second_line = models.CharField(max_length=200, null=True, blank=True)
     zip_code = models.CharField(max_length=10)
@@ -76,14 +74,14 @@ class CustomUserAddress(models.Model):
         return f'{self.city}, {self.country}'
 
 
-class CustomUserDetails(models.Model):
+class UserDetails(models.Model):
     '''A class to model user details.'''
 
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     date_of_birth = models.DateField()
-    address = models.ForeignKey(CustomUserAddress, on_delete=models.CASCADE, blank=True, null=True)
+    address = models.ForeignKey(UserAddress, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'
