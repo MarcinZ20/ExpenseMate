@@ -140,6 +140,7 @@ export default {
       forms: true,
       tooltips: true,
     }),
+    require('@tailwindcss/typography')
   ],
 }
 

@@ -4,7 +4,7 @@
 
 <template>
   <div class="border p-3 border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-48 flex flex-col justify-between">
-    <p class="text-base font-medium">Total Income</p>
+    <p class="text-base font-medium">Total Balance</p>
     <div>
       <div class="flex justify-between mt-2 mb-3">
         <p class="text-2xl font-bold">$11,836.00</p>

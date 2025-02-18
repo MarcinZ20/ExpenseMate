@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import { useTransactionStore } from '@/stores/transactions';
+import { ref } from 'vue';
+
+const transactionStore = useTransactionStore()
+
+const IncomeAmount = ref(transactionStore.MonthlyIncomeTotal)
+const date = ref(new Date().toDateString())
 
 </script>
 
@@ -7,7 +14,7 @@
     <p class="text-base font-medium">Total Income</p>
     <div>
       <div class="flex justify-between mt-2 mb-3">
-        <p class="text-2xl font-bold">$25,023.79</p>
+        <p class="text-2xl font-bold">${{ IncomeAmount }}</p>
         <span class="bg-green-200 text-green-600 text-xs px-2 py-1 rounded-full inline-flex items-center">
           <svg
             class="w-3 h-3 text-green-600 dark:text-white mr-1"
@@ -22,7 +29,7 @@
           <span class="text-xs">17,28%</span>
         </span>
       </div>
-      <p class="text-xs text-gray-400">Saturday, 30 Sep 2023</p>
+      <p class="text-xs text-gray-400">{{ date }}</p>
     </div>
   </div>
 </template>

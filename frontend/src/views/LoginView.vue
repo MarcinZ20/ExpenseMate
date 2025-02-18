@@ -2,11 +2,10 @@
 import { useAuthStore } from '@/stores/auth.ts'
 import { useForm } from 'vee-validate'
 import * as yup from 'yup'
-import axios from 'axios'
 
 const schema = yup.object({
   email: yup.string().required().email('Email is required'),
-  password: yup.string().min(6).required(),
+  password: yup.string().min(8).required(),
 })
 
 const {handleSubmit, defineField } = useForm({

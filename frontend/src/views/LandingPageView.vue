@@ -10,7 +10,7 @@ import FooterSection from '@/components/FooterSection.vue'
 
 <template>
   <div class="bg-cwhite">
-    <NavbarComponent/>
+    <!-- <NavbarComponent/>
     <HeroSection/>
     <hr class="h-px mx-auto max-w-lg my-8 bg-purple-200 border-2 dark:bg-gray-700">
     <FeaturesSection/>
@@ -18,6 +18,9 @@ import FooterSection from '@/components/FooterSection.vue'
     <TeamSection/>
     <hr class="h-px mx-auto max-w-lg my-8 bg-gray-200 border-2 dark:bg-gray-700">
     <CtaSection/>
-    <FooterSection/>
+    <FooterSection/> -->
+    <div class="container m-2 p-2 text-center bg-red text-white">
+      <h1>This is a home page.</h1>
+    </div>
   </div>
 </template>
