@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import ApexCharts from 'apexcharts';
+import { useTransactionStore } from '@/stores/transactions';
+import { onMounted, computed, ref, nextTick } from 'vue';
+
+const transactionStore = useTransactionStore()
+const chartElement = ref<HTMLElement | null>(null)
+
+const expenses = computed(() => transactionStore.chartExpenses)
+const income = computed(() => transactionStore.chartIncome)
 
 const options = {
   chart: {
@@ -15,7 +23,7 @@ const options = {
   yaxis: {
     labels: {
       formatter: function (value: number) {
-        return value / 1000 + 'k'
+        return value > 10000 ? value / 1000 + 'k' : value
       }
     }
   },
@@ -60,41 +68,28 @@ const options = {
   },
 }
 
-const series = [
-  {
-    name: 'Income',
-    type: 'area',
-    data: [
-      [1486684800000, 3400],
-      [1486771200000, 4300],
-      [1486857600000, 3100] ,
-      [1486944000000, 4300],
-      [1487030400000, 3300],
-      [1487116800000, 5200]
-    ]
-  },
-  {
-    name: 'Expenses',
-    type: 'area',
-    data: [
-      [1486684800000, 1200],
-      [1486771200000, 3300],
-      [1486857600000, 5100] ,
-      [1486944000000, 2300],
-      [1487030400000, 1300],
-      [1487116800000, 3200]
-    ]
+const series = ref([
+  { name: 'Income', type: 'area', data: income },
+  { name: 'Expenses', type: 'area', data: expenses }
+])
+
+onMounted(async () => {
+  if (chartElement.value) {
+    const chart = new ApexCharts(chartElement.value, {
+      ...options,
+      series: series.value
+    })
+
+    chart.render()
+  } else {
+    console.error('Element #area-chart was not found')
   }
-
-]
-
-const chart = new ApexCharts(document.querySelector('#area-chart'), options)
-chart.render()
+})
 
 </script>
 
 <template>
-  <div class="p-3 border rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4 col-span-2">
+  <div class="p-3 border rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4 col-span-3 lg:col-span-2">
    <div class="flex justify-between items-center">
     <div class="inline-flex items-center justify-between gap-3">
       <p class="text-base font-medium">General Budget</p>

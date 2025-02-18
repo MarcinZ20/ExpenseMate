@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
@@ -40,7 +39,7 @@
           </svg>
           <span class="sr-only">Toggle sidebar</span>
         </button>
-        <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
+        <a href="http://localhost:3000" class="flex items-center justify-between mr-4">
           <img
             src="../assets/img/logo_img.png"
             class="mr-3 h-8 hidden md:block"
@@ -408,7 +407,7 @@
           />
           <span class="sr-only">Michael Gough</span>
         </button>
-        <p class=" ml-3 hidden lg:block">Marcin Zub</p>
+        <p class=" ml-3 hidden lg:block"> Marcin Zub </p>
       </div>
     </div>
   </nav>
